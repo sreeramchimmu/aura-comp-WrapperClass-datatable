@@ -1,0 +1,42 @@
+public class customDataTablesController {
+    
+    @AuraEnabled
+    public static List<AccWrapper> fetchAccounts(){
+        List<Account> accList = [SELECT Id, Name, Industry, Type, Rating FROM ACCOUNT LIMIT 50];
+        
+        List<AccWrapper> accWrapList = new List<AccWrapper>();
+        for(integer i=0; i < accList.size(); i++){
+            AccWrapper wrapList = new AccWrapper();
+            
+            wrapList.acc.Name = accList[i].Name;
+            wrapList.acc.Type = accList[i].Type;
+            wrapList.acc.Industry = accList[i].Industry;
+            wrapList.sname = ''+(i+1);
+            if(accList[i].Type == 'Customer'){
+                wrapList.cusType = 'True';  
+            }else{
+                wrapList.cusType = 'False'; 
+            }
+            
+            accWrapList.add(wrapList);
+        }
+        
+        return accWrapList;
+    }
+    
+    
+    public class AccWrapper{
+        @AuraEnabled
+        public Account acc {get;set;}
+        
+        @AuraEnabled
+        public String cusType {get;set;}
+        
+        @AuraEnabled
+        public String sname {get;set;}
+        
+        public AccWrapper(){
+            acc = new Account(); 
+        }
+    }
+}

@@ -1,0 +1,23 @@
+<aura:component controller="customDataTablesController">
+        
+    <aura:attribute name="account" type="sObject" />
+    
+    <tr class="slds-hint-parent">
+        <td data-label="{!v.account.Industry}">
+            <div class="slds-truncate" title="{!v.account.sname}">{!v.account.sname}</div>
+        </td>
+        <td data-label="{!v.account.Industry}">
+            <div class="slds-truncate" title="{!v.account.cusType}">{!v.account.cusType}</div>
+        </td>
+        <td data-label="{!v.account.Name}" scope="row">
+            <div class="slds-truncate" title="{!v.account.acc.Name}">{!v.account.acc.Name}</div>
+        </td>
+        <td data-label="{!v.account.Type}">
+            <div class="slds-truncate" title="{!v.account.acc.Type}">{!v.account.acc.Type}</div>
+        </td>
+        <td data-label="{!v.account.Industry}">
+            <div class="slds-truncate" title="{!v.account.acc.Industry}">{!v.account.acc.Industry}</div>
+        </td>
+    </tr>
+    
+</aura:component>
